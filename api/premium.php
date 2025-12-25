@@ -1,16 +1,10 @@
 <?php
 require_once __DIR__ . '/db.php';
 
-/**
- * Dodaje lub przedłuża premium
- */
 function addPremium(int $userId, int $days): void {
+    if ($days <= 0) return;
+
     global $pdo;
-
-    if ($days <= 0) {
-        return;
-    }
-
     $stmt = $pdo->prepare("
         UPDATE users
         SET premium_expire =
@@ -22,7 +16,6 @@ function addPremium(int $userId, int $days): void {
         WHERE id = :uid
         LIMIT 1
     ");
-
     $stmt->execute([
         ':days' => $days,
         ':uid'  => $userId
