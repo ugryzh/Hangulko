@@ -16,7 +16,7 @@ function isAdmin(): bool {
 }
 
 /**
- * Pobierz aktualnego użytkownika z DB
+ * Pobierz aktualnego użytkownika z bazy (ŹRÓDŁO PRAWDY)
  */
 function currentUser(): ?array {
     global $pdo;
@@ -37,9 +37,12 @@ function currentUser(): ?array {
 
 /**
  * Czy użytkownik ma aktywne premium
+ * ❗ DB jest źródłem prawdy, NIE sesja
  */
 function isPremium(): bool {
-    if (!isLogged()) return false;
+    if (!isLogged()) {
+        return false;
+    }
 
     $user = currentUser();
     if (!$user || empty($user['premium_expire'])) {
