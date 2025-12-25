@@ -11,10 +11,8 @@ if ($code === '') {
     exit('Brak kodu');
 }
 
-/* Pobierz kod */
 $stmt = $pdo->prepare("
-    SELECT *
-    FROM coupons
+    SELECT * FROM coupons
     WHERE code = ?
       AND (expires_at IS NULL OR expires_at > NOW())
       AND used < max_uses
@@ -28,12 +26,8 @@ if (!$coupon) {
     exit('Nieprawidłowy kod');
 }
 
-/* Dodaj premium */
-if ((int)$coupon['bonus_days'] > 0) {
-    addPremium($_SESSION['user_id'], (int)$coupon['bonus_days']);
-}
+addPremium($_SESSION['user_id'], (int)$coupon['bonus_days']);
 
-/* Oznacz kod jako użyty */
 $pdo->prepare("
     UPDATE coupons
     SET used = used + 1
