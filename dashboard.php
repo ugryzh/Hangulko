@@ -50,8 +50,8 @@ if ($user && !empty($user['premium_expire'])) {
       <div class="col-md-3">
         <div class="dash-card">
           <h6>🎖️ Poziom</h6>
-          <strong>Poziom <?= $user['level'] ?></strong><br>
-          <small class="text-muted">XP: <?= $user['xp'] ?></small>
+          <strong>Poziom <?= (int)$user['level'] ?></strong><br>
+          <small class="text-muted">XP: <?= (int)$user['xp'] ?></small>
         </div>
       </div>
 
@@ -71,19 +71,17 @@ if ($user && !empty($user['premium_expire'])) {
             <table class="table table-sm mb-0">
               <tr>
                 <td>Status</td>
-                <td class="text-success">Aktywne</td>
+                <td class="text-success"><strong>Aktywne</strong></td>
               </tr>
               <tr>
                 <td>Pozostało</td>
-                <td><strong><?= $premiumDaysLeft ?></strong> dni</td>
-              </tr>
-              <tr>
-                <td>Do dnia</td>
-                <td><?= date('d.m.Y', strtotime($user['premium_expire'])) ?></td>
+                <td>
+                  <strong><?= $premiumDaysLeft ?></strong> dni
+                </td>
               </tr>
             </table>
           <?php else: ?>
-            <p class="text-danger mb-2">Brak Premium</p>
+            <p class="text-danger mb-2"><strong>Brak Premium</strong></p>
             <a href="premium.php" class="btn btn-outline-info btn-sm">
               Kup Premium
             </a>
