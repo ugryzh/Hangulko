@@ -1,5 +1,5 @@
 <?php
-require '../api/auth.php';
+require_once '../api/auth.php';
 requireAdmin();
 ?>
 
@@ -9,6 +9,7 @@ requireAdmin();
 <meta charset="UTF-8">
 <title>Admin Panel – Hangul Learn</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -22,15 +23,25 @@ requireAdmin();
     <p class="text-muted">Zarządzanie platformą Hangul Learn</p>
 
     <div class="row g-4 mt-4">
+
       <div class="col-md-3">
-        <a href="users.php" class="dash-action">👥 Użytkownicy</a>
+        <a href="users.php" class="dash-action d-block text-center">
+          👥<br>Użytkownicy
+        </a>
       </div>
+
       <div class="col-md-3">
-        <a href="coupons.php" class="dash-action">🎟️ Kody zniżkowe</a>
+        <a href="coupons.php" class="dash-action d-block text-center">
+          🎟️<br>Kody premium
+        </a>
       </div>
+
       <div class="col-md-3">
-        <a href="logs.php" class="dash-action">📜 Logi admina</a>
+        <a href="logs.php" class="dash-action d-block text-center">
+          📜<br>Logi admina
+        </a>
       </div>
+
     </div>
   </div>
 </section>
