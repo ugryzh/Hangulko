@@ -1,233 +1,110 @@
-/* === PALETA KOREA 🇰🇷 === */
+/* =========================
+   PALETA KOLORÓW 🇰🇷
+========================= */
 :root {
-  --bg-main: #020617;
-  --bg-soft: #0b122a;
+  --bg-main: #f5f8ff;
+  --bg-soft: #ffffff;
 
   --blue-main: #2563eb;
-  --blue-soft: #38bdf8;
+  --blue-soft: #60a5fa;
 
-  --red-main: #cd2e3a;
+  --red-main: #dc2626;
 
-  --text-main: #e5e7eb;
-  --text-muted: #94a3b8;
+  --text-main: #0f172a;
+  --text-muted: #475569;
 }
 
-/* === GLOBAL === */
+/* =========================
+   GLOBAL
+========================= */
 body {
   background:
-    radial-gradient(circle at top, var(--blue-main), transparent 40%),
-    radial-gradient(circle at bottom right, var(--red-main), transparent 45%),
+    radial-gradient(circle at top right, rgba(96,165,250,0.25), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(220,38,38,0.15), transparent 45%),
     var(--bg-main);
   color: var(--text-main);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   padding-top: 80px;
 }
 
-/* === NAVBAR === */
+/* =========================
+   NAVBAR
+========================= */
 .bg-glass {
-  background: rgba(2,6,23,0.85);
+  background: rgba(255,255,255,0.85);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(56,189,248,0.25);
+  border-bottom: 1px solid rgba(37,99,235,0.15);
 }
 
-.logo-img {
-  height: 40px;
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--text-main);
 }
 
-.brand-text {
-  font-weight: 700;
-  letter-spacing: .3px;
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--blue-main);
 }
 
-/* === LINKS === */
-.nav-link {
-  color: var(--text-main) !important;
-}
-
-.nav-link:hover {
-  color: var(--blue-soft) !important;
-}
-
-/* === BUTTONS === */
+/* =========================
+   BUTTONS
+========================= */
 .btn-primary {
   background: linear-gradient(135deg, var(--blue-main), var(--blue-soft));
   border: none;
 }
 
 .btn-outline-info {
-  border-color: var(--blue-soft);
-  color: var(--blue-soft);
+  border-color: var(--blue-main);
+  color: var(--blue-main);
 }
 
-.btn-outline-danger {
-  border-color: var(--red-main);
-  color: var(--red-main);
+.btn-outline-info:hover {
+  background: var(--blue-main);
+  color: #fff;
 }
 
-/* === HERO === */
-.hero-section {
-  padding: 120px 20px 100px;
-}
-
+/* =========================
+   HERO
+========================= */
 .hero-title {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--blue-soft), var(--red-main));
+  background: linear-gradient(135deg, var(--blue-main), var(--red-main));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
-  max-width: 640px;
-  margin: 20px auto 0;
   color: var(--text-muted);
-  font-size: 1.1rem;
 }
 
-/* === CARDS === */
-.feature-card {
-  background: rgba(11,18,42,0.9);
+/* =========================
+   CARDS
+========================= */
+.feature-card,
+.dash-card,
+.dash-action,
+.dash-progress,
+.auth-card,
+.premium-card {
+  background: var(--bg-soft);
   border-radius: 18px;
   padding: 24px;
-  border: 1px solid rgba(56,189,248,0.15);
-  transition: transform .2s ease, box-shadow .2s ease;
+  border: 1px solid rgba(37,99,235,0.15);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(37,99,235,.25);
+.feature-card:hover,
+.dash-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(37,99,235,0.15);
+  transition: all .2s ease;
 }
 
-/* === FOOTER === */
-.footer {
-  padding: 40px 20px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-/* === FOOTER (WSPÓLNY) === */
-
-.footer {
-  margin-top: 80px;
-  padding: 40px 20px;
-  background: linear-gradient(
-    180deg,
-    rgba(2,6,23,0) 0%,
-    rgba(2,6,23,0.9) 100%
-  );
-  color: var(--text-muted);
-  border-top: 1px solid rgba(56,189,248,0.15);
-}
-
-.footer .brand-text {
-  font-weight: 700;
-  letter-spacing: .4px;
-  color: var(--text-main);
-}
-
-.footer-links {
-  font-size: 0.9rem;
-}
-
-.footer-links a {
-  color: var(--blue-soft);
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.footer-legal {
-  font-size: 0.75rem;
-  color: #64748b;
-  margin-top: 10px;
-}
-
-/* === COOKIE NOTICE === */
-
-.cookie-notice {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 900px;
-  background: linear-gradient(
-    135deg,
-    rgba(37,99,235,0.95),
-    rgba(205,46,58,0.95)
-  );
-  color: #ffffff;
-  padding: 16px 20px;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.4);
-  z-index: 9999;
-}
-
-.cookie-text {
-  font-size: 0.9rem;
-}
-
-.cookie-notice .btn {
-  white-space: nowrap;
-}
-
-/* === AUTH (LOGIN / REGISTER) === */
-
-.auth-section {
-  min-height: calc(100vh - 160px);
-  display: flex;
-  align-items: center;
-  padding: 60px 20px;
-}
-
-.auth-card {
-  background: rgba(11,18,42,0.95);
-  border-radius: 18px;
-  padding: 32px;
-  border: 1px solid rgba(56,189,248,0.2);
-  box-shadow: 0 20px 40px rgba(0,0,0,.4);
-}
-
-.auth-card h4 {
-  font-weight: 700;
-}
-
-.auth-card .form-control {
-  background: #020617;
-  border: 1px solid rgba(255,255,255,0.1);
-  color: #e5e7eb;
-}
-
-.auth-card .form-control:focus {
-  background: #020617;
-  border-color: #38bdf8;
-  color: #fff;
-  box-shadow: none;
-}
-
-.auth-card a {
-  color: var(--blue-soft);
-  text-decoration: none;
-}
-
-.auth-card a:hover {
-  text-decoration: underline;
-}
-
-/* === DASHBOARD === */
-
+/* =========================
+   DASHBOARD
+========================= */
 .dashboard-section {
   padding: 60px 20px;
-}
-
-.dash-card {
-  background: rgba(11,18,42,0.95);
-  border-radius: 16px;
-  padding: 20px;
-  border: 1px solid rgba(56,189,248,0.2);
-  height: 100%;
 }
 
 .dash-card h6 {
@@ -236,92 +113,54 @@ body {
 }
 
 .dash-action {
-  background: rgba(2,6,23,0.9);
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid rgba(255,255,255,0.05);
-  height: 100%;
+  text-align: center;
 }
 
-.dash-action h5 {
-  font-weight: 700;
-}
-
-.dash-progress {
-  background: rgba(11,18,42,0.95);
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid rgba(56,189,248,0.2);
-}
-
-.progress {
+.dash-progress .progress {
   height: 14px;
   border-radius: 10px;
 }
 
-/* === PREMIUM PAGE === */
-
-.premium-section {
-  padding: 80px 20px;
+/* tabelka premium */
+.dash-card table td {
+  border-color: rgba(0,0,0,0.05);
+  font-size: 0.85rem;
+  padding: 6px;
 }
 
+/* =========================
+   AUTH
+========================= */
+.auth-section {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+}
+
+.auth-card input {
+  background: #f8fafc;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* =========================
+   PREMIUM
+========================= */
 .premium-title {
-  font-size: 2.6rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--blue-soft), var(--red-main));
+  background: linear-gradient(135deg, var(--blue-main), var(--red-main));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.premium-subtitle {
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  margin-top: 80px;
+  padding: 40px 20px;
+  background: #ffffff;
+  border-top: 1px solid rgba(37,99,235,0.15);
   color: var(--text-muted);
-  margin-top: 10px;
-}
-
-.premium-card {
-  background: rgba(11,18,42,0.95);
-  border-radius: 20px;
-  padding: 28px;
-  border: 1px solid rgba(56,189,248,0.25);
-  height: 100%;
-  position: relative;
-}
-
-.premium-card.featured {
-  border-color: var(--blue-soft);
-}
-
-.premium-card.best {
-  border-color: var(--red-main);
-}
-
-.premium-card h5 {
-  font-weight: 700;
-}
-
-.premium-card .price {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 15px 0;
-}
-
-.premium-card ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-
-.premium-card ul li {
-  margin-bottom: 6px;
-}
-
-.coupon-box {
-  background: rgba(2,6,23,0.9);
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.payments .badge {
-  margin: 0 5px;
+  font-size: 0.9rem;
 }
