@@ -2,20 +2,8 @@
 require_once '../api/auth.php';
 requireAdmin();
 
-/* BAN / UNBAN */
-if (isset($_GET['ban'])) {
-    $pdo->prepare("UPDATE users SET banned = 1 WHERE id = ?")
-        ->execute([(int)$_GET['ban']]);
-}
-
-if (isset($_GET['unban'])) {
-    $pdo->prepare("UPDATE users SET banned = 0 WHERE id = ?")
-        ->execute([(int)$_GET['unban']]);
-}
-
-/* LISTA */
 $users = $pdo->query("
-  SELECT id, username, email, role, banned, premium_expire
+  SELECT id, username, email, role, banned
   FROM users
   ORDER BY created_at DESC
 ")->fetchAll();
@@ -25,52 +13,43 @@ $users = $pdo->query("
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Użytkownicy – Admin</title>
+<title>Admin – Użytkownicy</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
 <?php require '../partials/navbar.php'; ?>
 
-<div class="container mt-5">
-<h3>👥 Użytkownicy</h3>
+<section class="dashboard-section">
+<div class="container">
 
-<table class="table table-dark table-hover mt-3">
+<h2>👥 Użytkownicy</h2>
+
+<div class="dash-card">
+<table class="table table-hover">
 <thead>
-<tr>
-  <th>ID</th>
-  <th>Username</th>
-  <th>Email</th>
-  <th>Premium</th>
-  <th>Ban</th>
-  <th>Akcje</th>
-</tr>
+<tr><th>ID</th><th>Użytkownik</th><th>Email</th><th>Profil</th></tr>
 </thead>
 <tbody>
-
 <?php foreach ($users as $u): ?>
 <tr>
   <td><?= $u['id'] ?></td>
   <td><?= htmlspecialchars($u['username']) ?></td>
   <td><?= htmlspecialchars($u['email']) ?></td>
   <td>
-    <?= ($u['premium_expire'] && strtotime($u['premium_expire']) > time()) ? '✔' : '—' ?>
-  </td>
-  <td><?= $u['banned'] ? '🚫' : '—' ?></td>
-  <td>
-    <?php if (!$u['banned']): ?>
-      <a href="?ban=<?= $u['id'] ?>" class="btn btn-sm btn-danger">Ban</a>
-    <?php else: ?>
-      <a href="?unban=<?= $u['id'] ?>" class="btn btn-sm btn-success">Unban</a>
-    <?php endif; ?>
+    <a href="/u/<?= urlencode($u['username']) ?>" target="_blank">
+      Zobacz
+    </a>
   </td>
 </tr>
 <?php endforeach; ?>
-
 </tbody>
 </table>
 </div>
+
+</div>
+</section>
 
 <?php require '../partials/footer.php'; ?>
 </body>
