@@ -1,14 +1,15 @@
 <?php
-require '../api/auth.php';
+require_once '../api/auth.php';
 requireAdmin();
 
 $logs = $pdo->query("
-  SELECT l.*, u.username
+  SELECT l.created_at, l.action, u.username
   FROM admin_logs l
   JOIN users u ON u.id = l.admin_id
   ORDER BY l.created_at DESC
 ")->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -25,16 +26,22 @@ $logs = $pdo->query("
 <h3>📜 Logi administratora</h3>
 
 <table class="table table-dark table-hover mt-3">
+<thead>
 <tr>
-<th>Admin</th><th>Akcja</th><th>Data</th>
+  <th>Admin</th>
+  <th>Akcja</th>
+  <th>Data</th>
 </tr>
+</thead>
+<tbody>
 <?php foreach ($logs as $l): ?>
 <tr>
-<td><?= htmlspecialchars($l['username']) ?></td>
-<td><?= htmlspecialchars($l['action']) ?></td>
-<td><?= $l['created_at'] ?></td>
+  <td><?= htmlspecialchars($l['username']) ?></td>
+  <td><?= htmlspecialchars($l['action']) ?></td>
+  <td><?= $l['created_at'] ?></td>
 </tr>
 <?php endforeach; ?>
+</tbody>
 </table>
 </div>
 
