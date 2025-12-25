@@ -143,3 +143,32 @@ body {
   color: #64748b;
   margin-top: 10px;
 }
+
+/* === COOKIE NOTICE === */
+
+.cookie-notice {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 900px;
+  background: linear-gradient(
+    135deg,
+    rgba(37,99,235,0.95),
+    rgba(205,46,58,0.95)
+  );
+  color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  z-index: 9999;
+}
+
+.cookie-text {
+  font-size: 0.9rem;
+}
+
+.cookie-notice .btn {
+  white-space: nowrap;
+}
