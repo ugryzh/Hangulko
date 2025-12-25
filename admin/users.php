@@ -1,9 +1,24 @@
 <?php
-require '../api/auth.php';
+require_once '../api/auth.php';
 requireAdmin();
 
-$stmt = $pdo->query("SELECT * FROM users ORDER BY created_at DESC");
-$users = $stmt->fetchAll();
+/* BAN / UNBAN */
+if (isset($_GET['ban'])) {
+    $pdo->prepare("UPDATE users SET banned = 1 WHERE id = ?")
+        ->execute([(int)$_GET['ban']]);
+}
+
+if (isset($_GET['unban'])) {
+    $pdo->prepare("UPDATE users SET banned = 0 WHERE id = ?")
+        ->execute([(int)$_GET['unban']]);
+}
+
+/* LISTA */
+$users = $pdo->query("
+  SELECT id, username, email, role, banned, premium_expire
+  FROM users
+  ORDER BY created_at DESC
+")->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -33,19 +48,26 @@ $users = $stmt->fetchAll();
 </tr>
 </thead>
 <tbody>
+
 <?php foreach ($users as $u): ?>
 <tr>
   <td><?= $u['id'] ?></td>
   <td><?= htmlspecialchars($u['username']) ?></td>
   <td><?= htmlspecialchars($u['email']) ?></td>
-  <td><?= $u['premium_expire'] && strtotime($u['premium_expire']) > time() ? '✔' : '—' ?></td>
+  <td>
+    <?= ($u['premium_expire'] && strtotime($u['premium_expire']) > time()) ? '✔' : '—' ?>
+  </td>
   <td><?= $u['banned'] ? '🚫' : '—' ?></td>
   <td>
-    <a href="users.php?ban=<?= $u['id'] ?>" class="btn btn-sm btn-danger">Ban</a>
-    <a href="users.php?unban=<?= $u['id'] ?>" class="btn btn-sm btn-success">Unban</a>
+    <?php if (!$u['banned']): ?>
+      <a href="?ban=<?= $u['id'] ?>" class="btn btn-sm btn-danger">Ban</a>
+    <?php else: ?>
+      <a href="?unban=<?= $u['id'] ?>" class="btn btn-sm btn-success">Unban</a>
+    <?php endif; ?>
   </td>
 </tr>
 <?php endforeach; ?>
+
 </tbody>
 </table>
 </div>
