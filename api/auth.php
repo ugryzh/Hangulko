@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/db.php';
 
-/* ===== AUTH CORE ===== */
+/* ===== CORE ===== */
 
 function isLogged(): bool {
     return isset($_SESSION['user_id']);
@@ -14,24 +14,36 @@ function requireLogin(): void {
     }
 }
 
+/* ===== ADMIN ===== */
+
 function isAdmin(): bool {
     if (!isLogged()) return false;
 
     global $pdo;
-    $stmt = $pdo->prepare("SELECT role FROM users WHERE id=? LIMIT 1");
+    $stmt = $pdo->prepare("
+        SELECT 1 FROM users
+        WHERE id = ? AND role = 'admin'
+        LIMIT 1
+    ");
     $stmt->execute([$_SESSION['user_id']]);
-    return $stmt->fetchColumn() === 'admin';
+    return (bool)$stmt->fetchColumn();
 }
 
-/* ===== PREMIUM — JEDYNE ŹRÓDŁO PRAWDY ===== */
+function requireAdmin(): void {
+    if (!isAdmin()) {
+        http_response_code(403);
+        exit('Brak dostępu (admin)');
+    }
+}
+
+/* ===== PREMIUM ===== */
 
 function isPremium(): bool {
     if (!isLogged()) return false;
 
     global $pdo;
     $stmt = $pdo->prepare("
-        SELECT 1
-        FROM users
+        SELECT 1 FROM users
         WHERE id = ?
           AND premium_expire IS NOT NULL
           AND premium_expire > NOW()
@@ -48,7 +60,7 @@ function currentUser(): ?array {
 
     global $pdo;
     $stmt = $pdo->prepare("
-        SELECT id, username, email, xp, level, role, premium_expire
+        SELECT id, username, email, xp, level, role, premium_expire, banned
         FROM users
         WHERE id = ?
         LIMIT 1
