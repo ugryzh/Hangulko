@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/db.php';
 
-/* ===== CORE ===== */
+/* ===== LOGIN ===== */
 
 function isLogged(): bool {
     return isset($_SESSION['user_id']);
