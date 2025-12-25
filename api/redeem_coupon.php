@@ -2,10 +2,7 @@
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/premium.php';
 
-if (!isLogged()) {
-    http_response_code(401);
-    exit('Brak autoryzacji');
-}
+requireLogin();
 
 $code = strtoupper(trim($_POST['code'] ?? ''));
 
@@ -28,10 +25,10 @@ $coupon = $stmt->fetch();
 
 if (!$coupon) {
     http_response_code(400);
-    exit('Nieprawidłowy lub wykorzystany kod');
+    exit('Nieprawidłowy kod');
 }
 
-/* Zastosuj bonus dni */
+/* Dodaj premium */
 if ((int)$coupon['bonus_days'] > 0) {
     addPremium($_SESSION['user_id'], (int)$coupon['bonus_days']);
 }
@@ -43,22 +40,4 @@ $pdo->prepare("
     WHERE code = ?
 ")->execute([$code]);
 
-/* 🔄 ODŚWIEŻ SESJĘ (KLUCZOWE) */
-$stmt = $pdo->prepare("
-    SELECT premium_expire
-    FROM users
-    WHERE id = ?
-    LIMIT 1
-");
-$stmt->execute([$_SESSION['user_id']]);
-$_SESSION['premium_expire'] = $stmt->fetchColumn();
-
-/* (opcjonalnie) log admin / systemowy */
-/*
-$pdo->prepare("
-    INSERT INTO admin_logs (admin_id, action)
-    VALUES (?, ?)
-")->execute([$_SESSION['user_id'], 'Użyto kodu: ' . $code]);
-*/
-
-echo 'Kod został poprawnie zastosowany';
+echo 'OK';
