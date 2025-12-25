@@ -1,0 +1,32 @@
+body {
+  background:#0b1220;
+  color:#e5e7eb;
+  font-family:system-ui;
+}
+
+.game-container {
+  max-width:400px;
+  margin:40px auto;
+  background:#111a2e;
+  padding:20px;
+  border-radius:16px;
+  text-align:center;
+}
+
+.hangul {
+  font-size:4rem;
+  margin:20px 0;
+}
+
+input, button, select {
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+}
+
+.adsense {
+  background:#020617;
+  margin-top:15px;
+  padding:20px;
+  opacity:.6;
+}
