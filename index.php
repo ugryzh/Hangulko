@@ -74,7 +74,7 @@ $logged = isLogged();
         <div class="feature-card">
           <h5>🏆 Osiągnięcia</h5>
           <p>
-            Zdobywaj achievementy, poziomy i miejsca w rankingu.
+            Achievementy, poziomy i ranking motywują do nauki.
           </p>
         </div>
       </div>
@@ -92,7 +92,7 @@ $logged = isLogged();
         <div class="feature-card">
           <h5>💎 Premium</h5>
           <p>
-            Brak reklam, pełna zawartość i szybszy progres.
+            Brak reklam i pełen dostęp do wszystkich funkcji.
           </p>
         </div>
       </div>
@@ -101,15 +101,8 @@ $logged = isLogged();
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="container text-center">
-    <img src="assets/images/logo.svg" height="32" class="mb-2" alt="Hangulko">
-    <p class="mb-0">
-      © <?= date('Y') ?> Hangul Learn • Nauka alfabetu koreańskiego
-    </p>
-  </div>
-</footer>
+<!-- ===== FOOTER (WSPÓLNY) ===== -->
+<?php require 'partials/footer.php'; ?>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
