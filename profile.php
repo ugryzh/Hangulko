@@ -8,8 +8,10 @@ if ($username === '') {
     exit('Profil nie istnieje');
 }
 
+/* POBIERZ PROFIL */
 $stmt = $pdo->prepare("
-  SELECT id, username, email, xp, level, premium_expire, created_at, avatar, header
+  SELECT id, username, email, xp, level, premium_expire,
+         created_at, avatar, header
   FROM users
   WHERE username = ? AND banned = 0
   LIMIT 1
@@ -41,7 +43,7 @@ $avatar = $user['avatar'] ?: 'default.png';
 <?php require 'partials/navbar.php'; ?>
 
 <!-- =========================
-     PROFILE HEADER
+     HEADER PROFILU
 ========================= -->
 <div class="profile-cover">
   <?php if (!empty($user['header'])): ?>
@@ -55,7 +57,7 @@ $avatar = $user['avatar'] ?: 'default.png';
 </div>
 
 <!-- =========================
-     PROFILE CARD
+     PROFIL
 ========================= -->
 <section class="section">
 <div class="container" style="max-width:900px">
@@ -98,6 +100,37 @@ $avatar = $user['avatar'] ?: 'default.png';
   </div>
 
 </div>
+
+<!-- =========================
+     POSTY UŻYTKOWNIKA
+========================= -->
+<hr class="my-5">
+
+<h4 class="mb-3">📝 Posty użytkownika</h4>
+
+<?php
+$stmt = $pdo->prepare("
+  SELECT content, created_at
+  FROM posts
+  WHERE user_id = ?
+  ORDER BY created_at DESC
+");
+$stmt->execute([$user['id']]);
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<?php if (!$posts): ?>
+  <p class="text-muted">Użytkownik nie dodał jeszcze żadnych postów.</p>
+<?php endif; ?>
+
+<?php foreach ($posts as $p): ?>
+  <div class="card-box mb-3">
+    <p><?= nl2br(htmlspecialchars($p['content'])) ?></p>
+    <div class="text-muted" style="font-size:.85rem">
+      <?= date('d.m.Y H:i', strtotime($p['created_at'])) ?>
+    </div>
+  </div>
+<?php endforeach; ?>
 
 </div>
 </section>
