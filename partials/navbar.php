@@ -3,19 +3,22 @@ require_once __DIR__ . '/../api/auth.php';
 $user = isLogged() ? currentUser() : null;
 ?>
 
-<nav class="navbar navbar-expand-lg bg-glass fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
 
-    <a class="navbar-brand fw-bold" href="/index.php">
+    <!-- LOGO / NAZWA -->
+    <a class="navbar-brand" href="/index.php">
       Hangul Learn
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+    <!-- TOGGLER -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navMain">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
+    <!-- MENU -->
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
 
         <li class="nav-item">
           <a class="nav-link" href="/ranking.php">Ranking</a>
@@ -39,31 +42,40 @@ $user = isLogged() ? currentUser() : null;
 
           <?php if (isAdmin()): ?>
             <li class="nav-item">
-              <a class="nav-link text-warning" href="/admin/index.php">
+              <a class="nav-link" href="/admin/index.php" style="color:#dc2626;">
                 Admin
               </a>
             </li>
           <?php endif; ?>
 
           <li class="nav-item ms-lg-2">
-            <a class="btn btn-outline-danger btn-sm" href="/logout.php">
+            <a class="btn btn-outline" href="/logout.php">
               Wyloguj
             </a>
           </li>
 
         <?php else: ?>
 
+          <!-- POPUP LOGOWANIE -->
           <li class="nav-item">
-            <a href="#" class="nav-link" onclick="openAuth('login'); return false;">
+            <button
+              class="btn btn-outline"
+              onclick="openAuth('login')"
+              type="button"
+            >
               Logowanie
-            </a>
+            </button>
           </li>
 
-          <li class="nav-item ms-lg-2">
-            <a href="#" class="btn btn-primary btn-sm"
-               onclick="openAuth('register'); return false;">
+          <!-- POPUP REJESTRACJA -->
+          <li class="nav-item ms-lg-1">
+            <button
+              class="btn btn-main"
+              onclick="openAuth('register')"
+              type="button"
+            >
               Rejestracja
-            </a>
+            </button>
           </li>
 
         <?php endif; ?>
