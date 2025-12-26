@@ -9,7 +9,7 @@ if ($username === '') {
 }
 
 $stmt = $pdo->prepare("
-  SELECT username, email, xp, level, premium_expire, created_at, avatar, header
+  SELECT id, username, email, xp, level, premium_expire, created_at, avatar, header
   FROM users
   WHERE username = ? AND banned = 0
   LIMIT 1
@@ -35,63 +35,67 @@ $avatar = $user['avatar'] ?: 'default.png';
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
-<link rel="canonical" href="/u/<?= htmlspecialchars($user['username']) ?>">
 </head>
 <body>
 
 <?php require 'partials/navbar.php'; ?>
 
-<section class="section">
-<div class="container">
-
-<!-- HEADER -->
-<?php if (!empty($user['header'])): ?>
-  <div class="mb-4">
+<!-- =========================
+     PROFILE HEADER
+========================= -->
+<div class="profile-cover">
+  <?php if (!empty($user['header'])): ?>
     <img
       src="/uploads/headers/<?= htmlspecialchars($user['header']) ?>"
-      alt=""
-      style="width:100%;max-height:200px;object-fit:cover;border-radius:14px;"
+      alt="Header profilu"
+    >
+  <?php else: ?>
+    <div class="profile-cover-placeholder"></div>
+  <?php endif; ?>
+</div>
+
+<!-- =========================
+     PROFILE CARD
+========================= -->
+<section class="section">
+<div class="container" style="max-width:900px">
+
+<div class="profile-card">
+
+  <!-- AVATAR -->
+  <div class="profile-avatar-wrapper">
+    <img
+      src="/uploads/avatars/<?= htmlspecialchars($avatar) ?>"
+      alt="Avatar"
+      class="profile-avatar"
     >
   </div>
-<?php endif; ?>
 
-<!-- PROFIL -->
-<div class="card-box text-center">
+  <!-- INFO -->
+  <div class="text-center mt-5">
 
-  <img
-    src="/uploads/avatars/<?= htmlspecialchars($avatar) ?>"
-    alt=""
-    style="
-      width:250px;
-      height:250px;
-      border-radius:50%;
-      object-fit:cover;
-      margin-top:-120px;
-      border:6px solid #fff;
-      background:#fff;
-    "
-  >
+    <h2 class="mb-1">
+      <?= htmlspecialchars($user['username']) ?>
+      <?php if ($isPremium): ?>
+        <span class="badge bg-success">Premium</span>
+      <?php endif; ?>
+    </h2>
 
-  <h2 class="mt-3 mb-1">
-    <?= htmlspecialchars($user['username']) ?>
-    <?php if ($isPremium): ?>
-      <span class="badge bg-success">Premium</span>
+    <p class="text-muted mb-1">
+      Poziom <?= (int)$user['level'] ?> • <?= (int)$user['xp'] ?> XP
+    </p>
+
+    <p class="text-muted">
+      Użytkownik od <?= date('d.m.Y', strtotime($user['created_at'])) ?>
+    </p>
+
+    <?php if (isLogged() && currentUser()['id'] === $user['id']): ?>
+      <a href="/profile_edit.php" class="btn btn-outline mt-3">
+        Edytuj profil
+      </a>
     <?php endif; ?>
-  </h2>
 
-  <p class="text-muted mb-1">
-    Poziom <?= (int)$user['level'] ?> • <?= (int)$user['xp'] ?> XP
-  </p>
-
-  <p class="text-muted">
-    Użytkownik od <?= date('d.m.Y', strtotime($user['created_at'])) ?>
-  </p>
-
-  <?php if (isLogged() && currentUser()['username'] === $user['username']): ?>
-    <a href="/profile_edit.php" class="btn btn-outline mt-3">
-      Edytuj profil
-    </a>
-  <?php endif; ?>
+  </div>
 
 </div>
 
