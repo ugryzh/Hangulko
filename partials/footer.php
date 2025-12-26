@@ -1,12 +1,22 @@
-<footer class="footer mt-5">
-  <div class="container text-center">
+<footer class="footer">
+  <div class="container">
+
+    <!-- POLECAJĄ NAS -->
+    <div class="recommended-section mb-4">
+      <h6 class="text-muted mb-3">Polecają nas:</h6>
+      <div class="recommended-logos">
+        <span class="rec-logo">EduTech Polska</span>
+        <span class="rec-logo">Korea Culture Hub</span>
+        <span class="rec-logo">LearnAsia</span>
+      </div>
+    </div>
 
     <p class="mb-1">
       © <?= date('Y') ?> <strong>Hangul Learn</strong>
     </p>
 
     <p class="text-muted mb-0">
-      Nauka alfabetu koreańskiego 🇰🇷 w nowoczesny sposób
+      Nauka alfabetu koreańskiego 🇰🇷 – prosto i nowocześnie
     </p>
 
   </div>
@@ -59,8 +69,4 @@
   </div>
 </div>
 
-<!-- =========================
-     JS
-========================= -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/auth.js"></script>
