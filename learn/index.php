@@ -19,21 +19,21 @@ require '../api/auth.php';
 <section class="section">
 <div class="container text-center">
 
-<h2 class="mb-4">📘 Nauka Hangula</h2>
+<h2 class="mb-5">📘 Nauka alfabetu Hangul</h2>
 
 <div class="row justify-content-center g-4">
 
   <div class="col-md-4">
-    <a href="consonants.php" class="card-box d-block text-decoration-none">
+    <a href="consonants.php" class="learn-module d-block text-decoration-none">
       <h4>Spółgłoski</h4>
-      <p class="text-muted">Podstawowe znaki Hangula</p>
+      <p>Poznaj podstawowe znaki Hangula</p>
     </a>
   </div>
 
   <div class="col-md-4">
-    <a href="vowels.php" class="card-box d-block text-decoration-none">
+    <a href="vowels.php" class="learn-module d-block text-decoration-none">
       <h4>Samogłoski</h4>
-      <p class="text-muted">Fundament sylab</p>
+      <p>Fundament budowy sylab</p>
     </a>
   </div>
 
