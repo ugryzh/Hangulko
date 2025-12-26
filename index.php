@@ -1,118 +1,21 @@
-<?php
-require 'api/auth.php';
-$user = isLogged() ? currentUser() : null;
-?>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-<meta charset="UTF-8">
-<title>Hangul Learn – Nauka alfabetu koreańskiego</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
-
-<?php require 'partials/navbar.php'; ?>
-
-<!-- =========================
-     HERO
-========================= -->
-<section class="hero-section">
+<section class="hero">
   <div class="container">
-    <div class="row align-items-center g-5">
+    <h1>
+      Nauka Hangula jest <span>쉬워요!</span>
+    </h1>
 
-      <div class="col-md-6 animate">
-        <h1 class="hero-title">
-          Hangul jest <span>쉬워요!</span><br>
-          Naucz się alfabetu koreańskiego
-        </h1>
+    <p>
+      Prosta, nowoczesna platforma do nauki alfabetu koreańskiego.
+      Bez chaosu. Bez spamu. Skutecznie.
+    </p>
 
-        <p class="hero-subtitle">
-          Interaktywna nauka, gry, testy i społeczność.
-          Zacznij czytać po koreańsku szybciej, niż myślisz 🇰🇷
-        </p>
-
-        <div class="mt-4">
-          <?php if ($user): ?>
-            <a href="/dashboard.php" class="btn btn-primary btn-lg me-2">
-              Przejdź do nauki
-            </a>
-          <?php else: ?>
-            <a href="#" onclick="openAuth('register'); return false;"
-               class="btn btn-primary btn-lg me-2">
-              Zacznij za darmo
-            </a>
-            <a href="#" onclick="openAuth('login'); return false;"
-               class="btn btn-outline-info btn-lg">
-              Zaloguj się
-            </a>
-          <?php endif; ?>
-        </div>
-      </div>
-
-      <div class="col-md-6 text-center animate">
-        <div class="hero-card">
-          <div class="hangul-preview">쉬워요!</div>
-          <p class="text-muted mt-3">
-            Spółgłoski • Samogłoski • Sylaby
-          </p>
-        </div>
-      </div>
-
+    <div class="hero-actions">
+      <button class="btn-main" onclick="openAuth('register')">
+        Zacznij za darmo
+      </button>
+      <button class="btn-outline" onclick="openAuth('login')">
+        Logowanie
+      </button>
     </div>
   </div>
 </section>
-
-<!-- =========================
-     FEATURES
-========================= -->
-<section class="features-section">
-  <div class="container">
-
-    <h2 class="section-title text-center mb-5">
-      Dlaczego Hangul Learn?
-    </h2>
-
-    <div class="row g-4">
-
-      <div class="col-md-4">
-        <div class="feature-card animate">
-          <h5>🎮 Nauka przez grę</h5>
-          <p>
-            Uczysz się przez ćwiczenia, quizy i gry,
-            a nie suche tabelki.
-          </p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="feature-card animate">
-          <h5>🏆 Motywacja</h5>
-          <p>
-            Poziomy, XP, osiągnięcia i ranking
-            motywują do regularnej nauki.
-          </p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="feature-card animate">
-          <h5>👥 Społeczność</h5>
-          <p>
-            Profile użytkowników, mikroblog
-            i wspólna nauka Hangula.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<?php require 'partials/footer.php'; ?>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
