@@ -8,6 +8,7 @@ $user = isLogged() ? currentUser() : null;
 <meta charset="UTF-8">
 <title>Hangul Learn – Nauka alfabetu koreańskiego</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
 </head>
@@ -24,25 +25,27 @@ $user = isLogged() ? currentUser() : null;
 
       <div class="col-md-6 animate">
         <h1 class="hero-title">
-          Naucz się <span>Hangula</span><br>
-          szybko i skutecznie
+          Hangul jest <span>쉬워요!</span><br>
+          Naucz się alfabetu koreańskiego
         </h1>
 
         <p class="hero-subtitle">
-          Interaktywna nauka alfabetu koreańskiego, gry,
-          ranking i społeczność uczących się 🇰🇷
+          Interaktywna nauka, gry, testy i społeczność.
+          Zacznij czytać po koreańsku szybciej, niż myślisz 🇰🇷
         </p>
 
         <div class="mt-4">
           <?php if ($user): ?>
             <a href="/dashboard.php" class="btn btn-primary btn-lg me-2">
-              Przejdź do dashboardu
+              Przejdź do nauki
             </a>
           <?php else: ?>
-            <a href="#" onclick="openAuth('register')" class="btn btn-primary btn-lg me-2">
+            <a href="#" onclick="openAuth('register'); return false;"
+               class="btn btn-primary btn-lg me-2">
               Zacznij za darmo
             </a>
-            <a href="#" onclick="openAuth('login')" class="btn btn-outline-info btn-lg">
+            <a href="#" onclick="openAuth('login'); return false;"
+               class="btn btn-outline-info btn-lg">
               Zaloguj się
             </a>
           <?php endif; ?>
@@ -51,7 +54,7 @@ $user = isLogged() ? currentUser() : null;
 
       <div class="col-md-6 text-center animate">
         <div class="hero-card">
-          <div class="hangul-preview">한글</div>
+          <div class="hangul-preview">쉬워요!</div>
           <p class="text-muted mt-3">
             Spółgłoski • Samogłoski • Sylaby
           </p>
@@ -78,8 +81,8 @@ $user = isLogged() ? currentUser() : null;
         <div class="feature-card animate">
           <h5>🎮 Nauka przez grę</h5>
           <p>
-            Ćwiczenia, testy i gry pomagają zapamiętać alfabet
-            szybciej niż tradycyjna nauka.
+            Uczysz się przez ćwiczenia, quizy i gry,
+            a nie suche tabelki.
           </p>
         </div>
       </div>
@@ -98,8 +101,8 @@ $user = isLogged() ? currentUser() : null;
         <div class="feature-card animate">
           <h5>👥 Społeczność</h5>
           <p>
-            Publiczne profile, mikroblog i komentarze
-            tworzą aktywną społeczność uczących się.
+            Profile użytkowników, mikroblog
+            i wspólna nauka Hangula.
           </p>
         </div>
       </div>
