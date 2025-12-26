@@ -1,15 +1,15 @@
-/* =========================
-   DESIGN SYSTEM – HANGUL LEARN
-========================= */
 :root {
   --blue: #2563eb;
   --blue-soft: #60a5fa;
   --red: #dc2626;
+
   --bg-main: #f4f7ff;
   --glass: rgba(255,255,255,0.75);
+
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --radius: 18px;
+
+  --radius: 22px;
   --blur: blur(14px);
 }
 
@@ -21,7 +21,7 @@ body {
     radial-gradient(circle at top right, rgba(96,165,250,.25), transparent 45%),
     radial-gradient(circle at bottom left, rgba(220,38,38,.18), transparent 45%),
     var(--bg-main);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto;
   color: var(--text-main);
   padding-top: 80px;
 }
@@ -30,22 +30,76 @@ body {
    ANIMACJE
 ========================= */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px) scale(.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes shake {
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate {
-  animation: fadeUp .5s ease both;
+  animation: fadeUp .7s ease both;
 }
 
-.shake {
-  animation: shake .35s ease;
+/* =========================
+   HERO
+========================= */
+.hero-section {
+  padding: 100px 0;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.hero-title span {
+  background: linear-gradient(135deg, var(--blue), var(--red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-top: 16px;
+}
+
+.hero-card {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border-radius: var(--radius);
+  padding: 60px 40px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.12);
+}
+
+.hangul-preview {
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: .2rem;
+}
+
+/* =========================
+   FEATURES
+========================= */
+.features-section {
+  padding: 80px 0;
+}
+
+.section-title {
+  font-weight: 800;
+}
+
+.feature-card {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border-radius: var(--radius);
+  padding: 32px;
+  height: 100%;
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+  transition: transform .25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
 }
 
 /* =========================
@@ -57,103 +111,11 @@ body {
   border-bottom: 1px solid rgba(37,99,235,.15);
 }
 
-.navbar .nav-link {
-  color: var(--text-main);
-  font-weight: 500;
-}
-
-.navbar .nav-link:hover {
-  color: var(--blue);
-}
-
-/* =========================
-   CARDS
-========================= */
-.dash-card,
-.dash-action,
-.auth-card {
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  border-radius: var(--radius);
-  border: 1px solid rgba(37,99,235,.15);
-  box-shadow: 0 20px 40px rgba(0,0,0,.08);
-  padding: 26px;
-  transition: all .25s ease;
-}
-
-.dash-card:hover,
-.dash-action:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 60px rgba(37,99,235,.25);
-}
-
-/* =========================
-   BUTTONS
-========================= */
-.btn-primary {
-  background: linear-gradient(135deg, var(--blue), var(--blue-soft));
-  border: none;
-}
-
-.btn-outline-info {
-  border-color: var(--blue);
-  color: var(--blue);
-}
-
-.btn-outline-info:hover {
-  background: var(--blue);
-  color: #fff;
-}
-
-/* =========================
-   AUTH POPUP
-========================= */
-.modal-auth {
-  position: fixed;
-  inset: 0;
-  background: rgba(15,23,42,.65);
-  backdrop-filter: blur(6px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.modal-auth.active {
-  display: flex;
-}
-
-.modal-box {
-  width: 100%;
-  max-width: 420px;
-  animation: fadeUp .45s ease;
-}
-
-.auth-card h4 {
-  font-weight: 800;
-  text-align: center;
-  background: linear-gradient(135deg, var(--blue), var(--red));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.auth-card input {
-  background: rgba(255,255,255,.9);
-  border-radius: 12px;
-  border: 1px solid rgba(0,0,0,.15);
-}
-
-.auth-card input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 2px rgba(37,99,235,.2);
-}
-
 /* =========================
    FOOTER
 ========================= */
 .footer {
-  margin-top: 80px;
-  padding: 40px 20px;
+  padding: 50px 20px;
   background: #fff;
   border-top: 1px solid rgba(37,99,235,.15);
   text-align: center;
