@@ -259,3 +259,124 @@ a:hover {
   background: #fff;
 }
 
+/* =========================
+   LEARN – UI NAUKI HANGULA
+========================= */
+
+/* GRID ZNAKÓW */
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 20px;
+}
+
+.learn-tile {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 16px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  transition: all .25s ease;
+  cursor: pointer;
+}
+
+.learn-tile:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+  border-color: #1e3a8a;
+}
+
+.learn-symbol {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+
+.learn-pron {
+  margin-top: 6px;
+  font-size: .95rem;
+  color: #64748b;
+}
+
+/* =========================
+   LEKCJA – SZCZEGÓŁ
+========================= */
+
+.lesson-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 50px 40px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.15);
+}
+
+.lesson-symbol {
+  font-size: 6rem;
+  font-weight: 900;
+  color: #dc2626;
+}
+
+.lesson-pron {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.lesson-desc {
+  margin-top: 20px;
+  font-size: 1.05rem;
+  color: #475569;
+}
+
+.lesson-audio {
+  margin-top: 30px;
+}
+
+/* =========================
+   NAWIGACJA NAUKI
+========================= */
+
+.learn-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.learn-nav a {
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.learn-nav a:hover {
+  background: #1e3a8a;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* =========================
+   MODUŁY NAUKI (INDEX)
+========================= */
+
+.learn-module {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 40px 30px;
+  border: 1px solid #e5e7eb;
+  transition: all .25s ease;
+}
+
+.learn-module:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0,0,0,.15);
+}
+
+.learn-module h4 {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.learn-module p {
+  color: #64748b;
+}
