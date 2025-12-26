@@ -54,13 +54,14 @@ $user = isLogged() ? currentUser() : null;
         <?php else: ?>
 
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="openAuth('login')">
+            <a href="#" class="nav-link" onclick="openAuth('login'); return false;">
               Logowanie
             </a>
           </li>
 
           <li class="nav-item ms-lg-2">
-            <a class="btn btn-primary btn-sm" href="#" onclick="openAuth('register')">
+            <a href="#" class="btn btn-primary btn-sm"
+               onclick="openAuth('register'); return false;">
               Rejestracja
             </a>
           </li>
