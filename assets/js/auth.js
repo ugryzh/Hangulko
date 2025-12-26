@@ -1,40 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const modal = document.getElementById('authModal');
-  const box = modal.querySelector('.modal-box');
+  const overlay = document.getElementById('authOverlay');
   const title = document.getElementById('authTitle');
   const form = document.getElementById('authForm');
   const submit = document.getElementById('authSubmit');
-  const switchAuth = document.getElementById('switchAuth');
+  const switcher = document.getElementById('authSwitch');
 
   let mode = 'login';
 
-  window.openAuth = function (type = 'login') {
+  window.openAuth = function(type = 'login') {
     mode = type;
-    modal.classList.add('active');
+    overlay.classList.add('active');
 
     if (mode === 'login') {
       title.textContent = 'Zaloguj się';
-      submit.textContent = 'Zaloguj się';
-      switchAuth.textContent = 'Nie masz konta? Zarejestruj się';
+      submit.textContent = 'Zaloguj';
+      switcher.innerHTML = 'Nie masz konta? <a href="#">Zarejestruj się</a>';
     } else {
-      title.textContent = 'Utwórz konto';
-      submit.textContent = 'Zarejestruj się';
-      switchAuth.textContent = 'Masz konto? Zaloguj się';
+      title.textContent = 'Rejestracja';
+      submit.textContent = 'Utwórz konto';
+      switcher.innerHTML = 'Masz konto? <a href="#">Zaloguj się</a>';
     }
-
-    box.classList.remove('shake');
   };
 
-  switchAuth.addEventListener('click', e => {
-    e.preventDefault();
-    openAuth(mode === 'login' ? 'register' : 'login');
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('active');
   });
 
-  modal.addEventListener('click', e => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-    }
+  switcher.addEventListener('click', e => {
+    e.preventDefault();
+    openAuth(mode === 'login' ? 'register' : 'login');
   });
 
   form.addEventListener('submit', e => {
@@ -49,13 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.trim() === 'OK') {
           location.reload();
         } else {
-          box.classList.add('shake');
           alert(res);
         }
-      })
-      .catch(() => {
-        box.classList.add('shake');
-        alert('Błąd połączenia z serwerem');
       });
   });
 
