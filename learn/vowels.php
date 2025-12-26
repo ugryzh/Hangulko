@@ -28,18 +28,12 @@ $letters = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <h3 class="mb-4">Samogłoski</h3>
 
-<div class="row g-3">
+<div class="learn-grid">
 <?php foreach ($letters as $l): ?>
-  <div class="col-6 col-md-3">
-    <a href="lesson.php?id=<?= $l['id'] ?>" class="card-box text-center d-block">
-      <div style="font-size:3rem;font-weight:700">
-        <?= htmlspecialchars($l['symbol']) ?>
-      </div>
-      <div class="text-muted">
-        <?= htmlspecialchars($l['pronunciation']) ?>
-      </div>
-    </a>
-  </div>
+  <a href="lesson.php?id=<?= $l['id'] ?>" class="learn-tile">
+    <div class="learn-symbol"><?= htmlspecialchars($l['symbol']) ?></div>
+    <div class="learn-pron"><?= htmlspecialchars($l['pronunciation']) ?></div>
+  </a>
 <?php endforeach; ?>
 </div>
 
