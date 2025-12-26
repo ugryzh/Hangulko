@@ -204,3 +204,58 @@ a:hover {
   border: 4px solid #fff;
 }
 
+/* =========================
+   PROFILE HEADER / COVER
+========================= */
+
+.profile-cover {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.profile-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #1e3a8a,
+    #dc2626
+  );
+}
+
+/* =========================
+   PROFILE CARD
+========================= */
+
+.profile-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 30px 30px;
+  margin-top: -90px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+}
+
+.profile-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: -120px;
+}
+
+.profile-avatar {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #fff;
+  background: #fff;
+}
+
